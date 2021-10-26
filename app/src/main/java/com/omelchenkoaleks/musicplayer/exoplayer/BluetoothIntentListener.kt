@@ -1,5 +1,6 @@
-package com.omelchenkoaleks.musicplayer
+package com.omelchenkoaleks.musicplayer.exoplayer
 
+import android.annotation.SuppressLint
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothHeadset
 import android.bluetooth.BluetoothProfile
@@ -61,11 +62,14 @@ open class BluetoothIntentListener private constructor(private val context: Cont
         }
     }
 
+    @SuppressLint("HardwareIds")
     fun init(callButtonEventListener: CallButtonEventListener?) {
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
-//        Log.d(TAG, "init(): adapter name = ${bluetoothAdapter?.name}\n" +
-//                "address = ${bluetoothAdapter?.address}\n" +
-//                "device = ${bluetoothAdapter?.bondedDevices?.forEach { it.name }}")
+        Log.d(
+            TAG, "init(): adapter name = ${bluetoothAdapter?.name}\n" +
+                "address = ${bluetoothAdapter?.address}\n" +
+                "device = ${bluetoothAdapter?.bondedDevices?.forEach { it.name }}"
+        )
         if (bluetoothAdapter != null) {
             callEventListener = callButtonEventListener
             mAudioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
@@ -89,6 +93,8 @@ open class BluetoothIntentListener private constructor(private val context: Cont
 
     companion object {
         private val TAG = "BluetoothIntent"
+
+        @SuppressLint("StaticFieldLeak")
         private var bluetoothIntentListener: BluetoothIntentListener? = null
 
         fun getInstance(context: Context): BluetoothIntentListener {

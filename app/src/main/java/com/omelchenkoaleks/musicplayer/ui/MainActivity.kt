@@ -10,7 +10,7 @@ import android.os.IBinder
 import android.os.RemoteException
 import android.support.v4.media.session.MediaControllerCompat
 import android.support.v4.media.session.PlaybackStateCompat
-import com.omelchenkoaleks.musicplayer.BluetoothIntentListener
+import com.omelchenkoaleks.musicplayer.exoplayer.BluetoothIntentListener
 import com.omelchenkoaleks.musicplayer.R
 import com.omelchenkoaleks.musicplayer.exoplayer.MusicService
 import com.omelchenkoaleks.musicplayer.utils.Constants.BUTTON_NEXT

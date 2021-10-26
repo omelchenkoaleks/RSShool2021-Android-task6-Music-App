@@ -19,4 +19,5 @@ object Constants {
     const val BUTTON_PAUSE = 3
     const val BUTTON_NEXT = 4
     const val BUTTON_PREVIOUS = 5
+
 }

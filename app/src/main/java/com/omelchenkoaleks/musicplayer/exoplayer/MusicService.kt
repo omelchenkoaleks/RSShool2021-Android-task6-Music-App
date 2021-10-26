@@ -201,7 +201,7 @@ class MusicService : MediaBrowserServiceCompat() {
         clientPackageName: String,
         clientUid: Int,
         rootHints: Bundle?
-    ): BrowserRoot? {
+    ): BrowserRoot {
         return BrowserRoot("Root", null)
     }
 
@@ -231,32 +231,21 @@ class MusicService : MediaBrowserServiceCompat() {
 
     private val exoPlayerListener = object : Player.EventListener {
 
-        override fun onPlaybackParametersChanged(playbackParameters: PlaybackParameters) {
-        }
-
-        override fun onTracksChanged(
-            trackGroups: TrackGroupArray,
-            trackSelections: TrackSelectionArray
-        ) {
-        }
-
-        override fun onPlayerError(error: PlaybackException) {
-        }
-
         override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
             if (playWhenReady && playbackState == ExoPlayer.STATE_ENDED) {
                 mediaSessionCallback.onSkipToNext()
             }
         }
 
-        override fun onLoadingChanged(isLoading: Boolean) {
-        }
-
-        override fun onPositionDiscontinuity(reason: Int) {
-        }
-
-        override fun onTimelineChanged(timeline: Timeline, reason: Int) {
-        }
+        override fun onTracksChanged(
+            trackGroups: TrackGroupArray,
+            trackSelections: TrackSelectionArray
+        ) {}
+        override fun onPlaybackParametersChanged(playbackParameters: PlaybackParameters) {}
+        override fun onPlayerError(error: PlaybackException) {}
+        override fun onLoadingChanged(isLoading: Boolean) {}
+        override fun onPositionDiscontinuity(reason: Int) {}
+        override fun onTimelineChanged(timeline: Timeline, reason: Int) {}
     }
 
     private val audioFocusChangeListener = AudioManager.OnAudioFocusChangeListener { focusChange ->
@@ -497,7 +486,6 @@ class MusicService : MediaBrowserServiceCompat() {
             Log.d("TAG", ">>>>>>>>>>>>> onMediaButtonEvent ${mediaButtonEvent?.action}")
             return super.onMediaButtonEvent(mediaButtonEvent)
         }
-
 
     }
 
